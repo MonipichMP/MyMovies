@@ -13,12 +13,12 @@ class MovieDetail extends StatefulWidget {
   final int movieId;
 
   MovieDetail({
-    this.title,
+    required this.title,
     this.posterUrl,
     this.description,
     this.releaseDate,
-    this.voteAverage,
-    this.movieId,
+    required this.voteAverage,
+    required this.movieId,
   });
 
   @override
@@ -42,15 +42,15 @@ class MovieDetailState extends State<MovieDetail> {
   final String voteAverage;
   final int movieId;
 
-  MovieDetailBloc bloc;
+  late MovieDetailBloc bloc;
 
   MovieDetailState({
-    this.title,
+    required this.title,
     this.posterUrl,
     this.description,
     this.releaseDate,
-    this.voteAverage,
-    this.movieId,
+    required this.voteAverage,
+    required this.movieId,
   });
 
   @override
@@ -153,10 +153,10 @@ class MovieDetailState extends State<MovieDetail> {
                               builder: (context,
                                   AsyncSnapshot<TrailerModel> itemSnapShot) {
                                 if (itemSnapShot.hasData) {
-                                  if (itemSnapShot.data.results.length > 0)
-                                    return trailerLayout(itemSnapShot.data);
+                                  if (itemSnapShot.data!.results.length > 0)
+                                    return trailerLayout(itemSnapShot.data!);
                                   else
-                                    return noTrailer(itemSnapShot.data);
+                                    return noTrailer(itemSnapShot.data!);
                                 } else {
                                   return Center(
                                       child: CircularProgressIndicator());

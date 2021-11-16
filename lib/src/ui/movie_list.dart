@@ -46,7 +46,7 @@ class MovieListState extends State<MovieList> {
 
   Widget buildList(AsyncSnapshot<ItemModel> snapshot) {
     return GridView.builder(
-        itemCount: snapshot.data.results.length,
+        itemCount: snapshot.data!.results.length,
         gridDelegate:
         new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
@@ -55,10 +55,10 @@ class MovieListState extends State<MovieList> {
               enableFeedback: true,
               child: Image.network(
                 'https://image.tmdb.org/t/p/w185${snapshot.data
-                    .results[index].poster_path}',
+                    !.results[index].poster_path}',
                 fit: BoxFit.cover,
               ),
-              onTap: () => openDetailPage(snapshot.data, index),
+              onTap: () => openDetailPage(snapshot.data!, index),
             ),
           );
         });
